@@ -4,7 +4,7 @@ Om Next template with figwheel and SCSS hot-reload.
 
 ## Usage
 
-You must have `sassc` installed in order to have your SCSS stylesheets
+You must have `node-sass` installed in order to have your SCSS stylesheets
 compile and hot-reload.
 
 To run from the command line:

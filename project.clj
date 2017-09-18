@@ -2,17 +2,14 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+            :url  "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.908"]
                  [org.omcljs/om "1.0.0-beta1"]
                  [com.stuartsierra/component "0.3.2"]]
 
-  :plugins [[lein-cljsbuild "1.1.7"]
-            [lein-auto "0.1.3"]
-            [lein-scss "0.3.0"]
-            [lein-sassc "0.10.4"]]
+  :plugins [[lein-cljsbuild "1.1.7"]]
 
   :source-paths ["src/clj" "src/cljs"]
 
@@ -41,14 +38,6 @@
    ;; :server-ip "127.0.0.1" ;; default
    :css-dirs ["resources/public/css"]} ;; watch and update CSS
 
-  :sassc
-  [{:src "src/scss/style.scss"
-    :output-to "resources/public/css/style.css"}]
-
-  :auto
-  {"sassc" {:file-pattern  #"\.(scss)$"
-            :paths ["src/scss"]}}
-
   :profiles
   {:dev
    {:dependencies [[figwheel "0.5.13"]
@@ -56,14 +45,12 @@
                    [com.cemerick/piggieback "0.2.2"]
                    [org.clojure/tools.nrepl "0.2.12"]]
     :plugins      [[lein-figwheel "0.5.13"]]
-    :hooks        [leiningen.sassc]
     :source-paths ["dev"]
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
 
    :uberjar
    {:source-paths ^:replace ["src/clj"]
-    :prep-tasks ["compile"
-                 ["cljsbuild" "once" "min"]]
-    :hooks [leiningen.sassc]
-    :omit-source true
-    :aot :all}})
+    :prep-tasks   ["compile"
+                   ["cljsbuild" "once" "min"]]
+    :omit-source  true
+    :aot          :all}})

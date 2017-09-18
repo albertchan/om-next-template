@@ -20,7 +20,7 @@
                :verbose true}}]})
 
 (def sass-config
-  {:executable-path "sassc" ; e.g. /usr/local/bin/sassc
+  {:executable-path "node-sass" ; e.g. /usr/local/bin/sassc
    :input-dir "src/scss" ; location of scss files
    :output-dir "resources/public/css"})
 
@@ -43,7 +43,7 @@
         (println "Figwheel: Starting SASS watch process")
         (assoc config :sass-watcher-process
                (.exec (Runtime/getRuntime)
-                      (str executable-path " --watch " input-dir ":" output-dir))))
+                      (str executable-path " --watch " input-dir " -o " output-dir))))
       config))
   (stop [config]
     (when-let [process (:sass-watcher-process config)]
